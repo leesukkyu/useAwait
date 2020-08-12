@@ -8,6 +8,10 @@ It is very simple to use.
 
 It only takes 5 minutes to read the code below. For now, that's all.
 
+1. Write your own asynchronous function that returns a promise.
+2. It can be a function or a list of functions. If you need multiple asynchronous processing at any given time, create a list. It runs in parallel. This will be the first parameter.
+3. If there is a dependency on the asynchronous processing you just wrote, pass it as a list to the second parameter. Maybe it will be something like a user ID.
+
 ```
 function UseAwaitTest1() {
   const [count, setCount] = useState(0);
