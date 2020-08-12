@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, Suspense } from "react";
-import useAwait from "./useAwait";
+import useAwait from "./index.js";
 
 function UseAwaitExample1() {
   const [count, setCount] = useState(0);
@@ -83,10 +83,10 @@ function UseAwaitExample2() {
 function App() {
   return (
     <>
-      <Suspense fallback={<div>...load data</div>}>
+      <Suspense fallback={<div>...Loading data</div>}>
         <UseAwaitExample1></UseAwaitExample1>
       </Suspense>
-      <Suspense fallback={<div>...load data</div>}>
+      <Suspense fallback={<div>...Loading data</div>}>
         <UseAwaitExample2></UseAwaitExample2>
       </Suspense>
     </>
