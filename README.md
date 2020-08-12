@@ -1,6 +1,6 @@
 # useAwait
 
-##### works with react suspense.
+### works with react suspense.
 
 It is very simple to use.
 
