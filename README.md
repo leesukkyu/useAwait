@@ -2,7 +2,7 @@
 
 ### works with react suspense.
 
-React controls the behavior of suspense based on the throw statement. Therefore, the behavior of useAwait in the component behaves like the await function inside the async function.
+*React controls the behavior of suspense based on the throw statement. Therefore, the behavior of useAwait in the component behaves like the await function inside the async function.*
 
 It is very simple to use.
 
