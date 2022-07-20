@@ -2,18 +2,24 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from "react";
 
+export class useAwait2 extends React.Component {
+  render() {
+    return 10;
+  }
+}
+
 function useAwait(fnList, dependencyList) {
   if (!isValid(fnList, dependencyList)) {
     return;
   }
   const isArray = Array.isArray(fnList);
-  const [isStart, setIsStart] = useState(false);
-  const [isEnd, setIsEnd] = useState(false);
+  const [isRunning, setIsRunning] = useState(false);
+  const [isPromiseEnd, setIsPromiseEnd] = useState(false);
   const [error, setIsError] = useState(null);
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState(isArray ? [] : null);
 
   useEffect(() => {
-    setIsStart(true);
+    setIsRunning(true);
     try {
       Promise.all(
         isArray
@@ -33,16 +39,16 @@ function useAwait(fnList, dependencyList) {
           setIsError(err);
         })
         .finally(() => {
-          setIsEnd(true);
+          setIsPromiseEnd(true);
         });
     } catch (err) {
       setIsError(err);
-      setIsEnd(true);
+      setIsPromiseEnd(true);
     }
   }, dependencyList);
 
-  if (isStart === true) {
-    if (!isEnd) {
+  if (isRunning) {
+    if (!isPromiseEnd) {
       throw Promise.resolve();
     }
 
@@ -51,8 +57,8 @@ function useAwait(fnList, dependencyList) {
     }
 
     if (result) {
-      setIsStart(false);
-      setIsEnd(false);
+      setIsRunning(false);
+      setIsPromiseEnd(false);
       setIsError(null);
       return result;
     }
